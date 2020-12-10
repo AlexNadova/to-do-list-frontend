@@ -1,7 +1,9 @@
 import Dashboard from "./views/Dashboard.js";
 import Login from "./views/Login.js";
+import Registration from "./views/Registration.js";
 import Notes from "./views/Notes.js";
 import NoteView from "./views/NoteView.js";
+import NoteAdd from "./views/NoteAdd.js";
 import Profile from "./views/Profile.js";
 
 // import Cookies from './cookie.js'
@@ -32,8 +34,10 @@ const router = async () => {
   const routes = [
     { path: "/", view: Dashboard },
     { path: "/login", view: Login },
+    { path: "/registration", view: Registration },
     { path: "/notes", restrict: true, view: Notes },
     { path: "/notes/:id", restrict: true, view: NoteView },
+    { path: "/add-note", restrict: true, view: NoteAdd },
     { path: "/profile", restrict: true, view: Profile },
   ];
 

@@ -7,6 +7,7 @@ export default class extends AbstractView {
     this.setTitle("Viewing Note");
   }
 
+  
   async getJs(url, token) {
     document.querySelector("#deleteBtn").addEventListener("click", () => {
       let userId = localStorage.getItem("id");

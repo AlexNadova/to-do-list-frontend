@@ -6,17 +6,11 @@ export default class extends AbstractView {
     this.setTitle("Notes");
   }
 
-  getJs(url, token) {
-    document.querySelector("#addNote").addEventListener("click", () => {
-      window.location.href = "/add-note";
-    });
-  }
-
   getHtml(url, token, res) {
     let html = `
       <div>
         <h1>Notes:</h1>
-        <button id="addNote">Add note</button>
+        <a href="./add-note}">Add note</a>
     `;
     let userId = localStorage.getItem("id");
     var xhttp = new XMLHttpRequest();

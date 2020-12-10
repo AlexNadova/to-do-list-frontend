@@ -7,7 +7,11 @@ export default class {
     document.title = title;
   }
 
-  async getHtml() {
+  async getJs(url, token) {
+    return "";
+  }
+
+  async getHtml(url, token, res) {
     return "";
   }
 }

@@ -6,6 +6,7 @@ import NoteView from "./views/NoteView.js";
 import NoteAdd from "./views/NoteAdd.js";
 import NoteUpdate from "./views/NoteUpdate.js";
 import Profile from "./views/Profile.js";
+import ProfileUpdate from "./views/ProfileUpdate.js";
 
 // import Cookies from './cookie.js'
 const url = "http://localhost:3000/api";
@@ -41,6 +42,7 @@ const router = async () => {
     { path: "/add-note", restrict: true, view: NoteAdd },
     { path: "/update-note/:id", restrict: true, view: NoteUpdate },
     { path: "/profile", restrict: true, view: Profile },
+    { path: "/update-user", restrict: true, view: ProfileUpdate },
   ];
 
   // Test each route for potential match

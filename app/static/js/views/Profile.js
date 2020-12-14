@@ -31,7 +31,7 @@ export default class extends AbstractView {
     });
   }
 
-  async getHtml(url, token, res) {
+  async getHtml(url, token, html) {
     let userId = this.userId;
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", url + "/users/" + userId, true);
@@ -40,7 +40,8 @@ export default class extends AbstractView {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         var userInfo = JSON.parse(this.responseText);
-        let html = `
+        let div = document.createElement("div");
+        div.innerHTML = `
           <h1>Profile</h1>
           <button id="deleteBtn">Delete profile</button>
           <a href="../update-user">Update user</a>
@@ -54,7 +55,7 @@ export default class extends AbstractView {
             </ul>
           </div>
         `;
-        if (res) res(html);
+        if (html) html(div);
       } else if (
         this.readyState == 4 &&
         this.status != 0 &&

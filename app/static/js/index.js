@@ -68,7 +68,8 @@ const router = async () => {
     // document.getElementById("err").innerHTML = "";
     const view = new match.route.view(getParams(match));
     await view.getHtml(url, token, (res) => {
-      document.querySelector("#app").innerHTML = res;
+      let app = document.querySelector("#app");
+      app.replaceChild(res, app.firstChild);
       view.getJs(url, token);
     });
   } else if (!match.route.restrict && token) {

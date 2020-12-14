@@ -34,7 +34,8 @@ export default class extends AbstractView {
   }
 
   async getHtml(url, token, html) {
-    html(`
+    html(
+      document.createElementFromString(`
     <h1>Login</h1>
     <form id="loginForm">
       <div>
@@ -50,6 +51,7 @@ export default class extends AbstractView {
       </div>
     </form>
     <p id="demo"></p>
-    `);
+    `)
+    );
   }
 }

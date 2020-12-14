@@ -7,9 +7,8 @@ import NoteAdd from "./views/NoteAdd.js";
 import NoteUpdate from "./views/NoteUpdate.js";
 import Profile from "./views/Profile.js";
 import ProfileUpdate from "./views/ProfileUpdate.js";
+import config from "./../config.js";
 
-// import Cookies from './cookie.js'
-const url = "http://localhost:3000/api";
 
 const pathToRegex = (path) =>
   new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
@@ -67,10 +66,10 @@ const router = async () => {
   if ((match.route.restrict && token) || (!match.route.restrict && !token)) {
     // document.getElementById("err").innerHTML = "";
     const view = new match.route.view(getParams(match));
-    await view.getHtml(url, token, (res) => {
+    await view.getHtml(config.baseUrl, token, (res) => {
       let app = document.querySelector("#app");
       app.replaceChild(res, app.firstChild);
-      view.getJs(url, token);
+      view.getJs(config.baseUrl, token);
     });
   } else if (!match.route.restrict && token) {
     window.location.href = "/notes";

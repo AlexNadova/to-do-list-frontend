@@ -14,13 +14,19 @@ export default class extends AbstractView {
       const data = new FormData(form);
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-          let response = JSON.parse(this.response)
+          let response = JSON.parse(this.response);
           localStorage.setItem("token", response.accessToken);
           localStorage.setItem("id", response.id);
           window.location.href = "/notes";
-        } else
-          document.getElementById("demo").innerHTML =
-            this.readyState + " " + this.status;
+        } else if (
+          this.readyState == 4 &&
+          this.status != 0 &&
+          this.status != 200
+        ) {
+          let response = JSON.parse(this.response);
+          document.getElementById("err").innerHTML =
+            this.status + ": " + response.message;
+        }
       };
       xhttp.open("POST", url + "/auth/signIn");
       xhttp.send(data);

@@ -3,8 +3,8 @@ import AbstractView from "./AbstractView.js";
 export default class extends AbstractView {
   constructor(params) {
     super(params);
-      this.userId = localStorage.getItem("id");
-      this.setTitle("Profile");
+    this.userId = localStorage.getItem("id");
+    this.setTitle("Profile");
   }
 
   async getJs(url, token) {
@@ -15,6 +15,14 @@ export default class extends AbstractView {
           window.location.href = "/login";
           localStorage.removeItem("id");
           localStorage.removeItem("token");
+        } else if (
+          this.readyState == 4 &&
+          this.status != 0 &&
+          this.status != 200
+        ) {
+          let response = JSON.parse(this.response);
+          document.getElementById("err").innerHTML =
+            this.status + ": " + response.message;
         }
       };
       xhttp.open("DELETE", url + "/users/" + this.userId, true);
@@ -47,6 +55,14 @@ export default class extends AbstractView {
           </div>
         `;
         if (res) res(html);
+      } else if (
+        this.readyState == 4 &&
+        this.status != 0 &&
+        this.status != 200
+      ) {
+        let response = JSON.parse(this.response);
+        document.getElementById("err").innerHTML =
+          this.status + ": " + response.message;
       }
     };
   }

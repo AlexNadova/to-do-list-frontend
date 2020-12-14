@@ -29,6 +29,14 @@ export default class extends AbstractView {
         });
         html += "</ul></div>";
         if (res) res(html);
+      } else if (
+        this.readyState == 4 &&
+        this.status != 0 &&
+        this.status != 200
+      ) {
+        let response = JSON.parse(this.response);
+        document.getElementById("err").innerHTML =
+          this.status + ": " + response.message;
       }
     };
   }

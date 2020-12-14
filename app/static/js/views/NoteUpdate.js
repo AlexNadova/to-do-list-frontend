@@ -12,12 +12,20 @@ export default class extends AbstractView {
     const form = document.querySelector("#updateNoteForm");
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      let noteId = this.noteId
+      let noteId = this.noteId;
       var xhttp = new XMLHttpRequest();
       const data = new FormData(form);
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           window.location.href = "/notes/" + noteId;
+        } else if (
+          this.readyState == 4 &&
+          this.status != 0 &&
+          this.status != 200
+        ) {
+          let response = JSON.parse(this.response);
+          document.getElementById("err").innerHTML =
+            this.status + ": " + response.message;
         }
       };
       xhttp.open("PUT", url + "/notes/" + this.userId + "/" + noteId);

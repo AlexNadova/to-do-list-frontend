@@ -15,7 +15,15 @@ export default class extends AbstractView {
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           window.location.href = "/login";
-        } else document.getElementById("demo").innerHTML = this.responseText;
+        } else if (
+          this.readyState == 4 &&
+          this.status != 0 &&
+          this.status != 200
+        ) {
+          let response = JSON.parse(this.response);
+          document.getElementById("err").innerHTML =
+            this.status + ": " + response.message;
+        }
       };
       xhttp.open("POST", url + "/auth/signUp");
       xhttp.send(data);

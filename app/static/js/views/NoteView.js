@@ -14,6 +14,14 @@ export default class extends AbstractView {
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           window.location.href = "/notes";
+        } else if (
+          this.readyState == 4 &&
+          this.status != 0 &&
+          this.status != 200
+        ) {
+          let response = JSON.parse(this.response);
+          document.getElementById("err").innerHTML =
+            this.status + ": " + response.message;
         }
       };
       xhttp.open(
@@ -51,6 +59,14 @@ export default class extends AbstractView {
           </div>
         `;
         if (res) res(html);
+      } else if (
+        this.readyState == 4 &&
+        this.status != 0 &&
+        this.status != 200
+      ) {
+        let response = JSON.parse(this.response);
+        document.getElementById("err").innerHTML =
+          this.status + ": " + response.message;
       }
     };
   }

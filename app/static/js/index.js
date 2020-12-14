@@ -35,8 +35,8 @@ const navigateTo = (url) => {
 const router = async () => {
   const routes = [
     { path: "/", view: Dashboard },
-    { path: "/login", view: Login },
-    { path: "/registration", view: Registration },
+    { path: "/login", restrict: false, view: Login },
+    { path: "/registration", restrict: false, view: Registration },
     { path: "/notes", restrict: true, view: Notes },
     { path: "/notes/:id", restrict: true, view: NoteView },
     { path: "/add-note", restrict: true, view: NoteAdd },
@@ -64,14 +64,19 @@ const router = async () => {
   }
 
   let token = localStorage.getItem("token");
-  if (!match.route.restrict || (match.route.restrict && token)) {
+  if ((match.route.restrict && token) || (!match.route.restrict && !token)) {
+    // document.getElementById("err").innerHTML = "";
     const view = new match.route.view(getParams(match));
     await view.getHtml(url, token, (res) => {
       document.querySelector("#app").innerHTML = res;
       view.getJs(url, token);
     });
-  } else {
-    document.querySelector("#app").innerHTML = "Restricted";
+  } else if (!match.route.restrict && token) {
+    window.location.href = "/notes";
+  } else if (match.route.restrict && !token) {
+    document.querySelector("#err").innerHTML =
+      "You need to be logged in to acces this site.";
+    window.location.href = "/login";
   }
 };
 

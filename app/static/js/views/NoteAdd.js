@@ -20,6 +20,19 @@ export default class extends AbstractView {
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           window.location.href = "/notes";
+        } else if (
+          this.readyState == 4 &&
+          this.status != 0 &&
+          this.status != 200
+        ) {
+          let response = JSON.parse(this.response);
+          let err = document.getElementById("err");
+          err.innerText = this.status + ": " + response.message;
+          err.style.display = "block";
+          setTimeout(function () {
+            err.innerText = "";
+            err.style.display = "none";
+          }, 4000);
         }
       };
       xhttp.open("POST", url + "/notes/" + userId);
@@ -73,8 +86,21 @@ export default class extends AbstractView {
         let button = document.createElement("button");
         button.setAttribute("type", "submit");
         button.setAttribute("class", "action__button submit");
-        button.innerHTML = "<span>Update note</span>";
+        button.innerHTML = "<span>Add note</span>";
         form.appendChild(button);
+      } else if (
+        this.readyState == 4 &&
+        this.status != 0 &&
+        this.status != 200
+      ) {
+        let response = JSON.parse(this.response);
+        let err = document.getElementById("err");
+        err.innerText = "Tags could not be loaded.";
+        err.style.display = "block";
+        setTimeout(function () {
+          err.innerText = "";
+          err.style.display = "none";
+        }, 4000);
       }
     };
     xhttp.open("GET", url + "/tags");

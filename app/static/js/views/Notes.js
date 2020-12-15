@@ -46,8 +46,13 @@ export default class extends AbstractView {
         this.status != 200
       ) {
         let response = JSON.parse(this.response);
-        document.getElementById("err").innerHTML =
-          this.status + ": " + response.message;
+        let err = document.getElementById("err");
+        err.innerText = this.status + ": " + response.message;
+        err.style.display = "block";
+        setTimeout(function () {
+          err.innerText = "";
+          err.style.display = "none";
+        }, 4000);
       }
     };
   }

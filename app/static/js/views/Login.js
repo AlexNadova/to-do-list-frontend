@@ -24,8 +24,13 @@ export default class extends AbstractView {
           this.status != 200
         ) {
           let response = JSON.parse(this.response);
-          document.getElementById("err").innerHTML =
-            this.status + ": " + response.message;
+          let err = document.getElementById("err");
+          err.innerText = this.status + ": " + response.message;
+          err.style.display = "block";
+          setTimeout(function () {
+            err.innerText = "";
+            err.style.display = "none";
+          }, 4000);
         }
       };
       xhttp.open("POST", url + "/auth/signIn");
@@ -44,7 +49,7 @@ export default class extends AbstractView {
       </div>
       <div class="form__input">
         <label for="password">Password</label>
-        <input name="password" id="password">
+        <input type="password" name="password" id="password">
       </div>
       <button class="action__button submit"><span>Login</span></button>
     </form>

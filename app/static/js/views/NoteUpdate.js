@@ -76,7 +76,7 @@ export default class extends AbstractView {
             tagFieldset.setAttribute("class", "info__tags");
             tags.forEach((tag) => {
               let tagItem = document.createElement("div");
-              tagItem.setAttribute("class", "n" + tag.id);
+              tagItem.setAttribute("class", "tag n" + tag.id);
 
               let tagInput = document.createElement("input");
               tagInput.setAttribute("type", "checkbox");

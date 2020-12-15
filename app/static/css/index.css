@@ -112,9 +112,6 @@ h1 {
 }
 .notes-list > li {
   word-break: break-all;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 .notes-list > li:hover {
   background-color: #eee;
@@ -126,14 +123,22 @@ h1 {
   color: black;
   padding: 5px 15px;
 }
-.notes-list > li > span {
-  margin-left: 10px;
-  float: right;
-  cursor: pointer;
+.notes-list > li > .tag {
+  margin: 0 3px 10px 0;
+  word-break: normal;
+  font-size: 12px;
+  display: inline-block;
 }
-.notes-list > li > span:hover {
-  font-weight: bold;
-  color: darkcyan;
+@media screen and (min-width: 550px) {
+  .notes-list > li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .notes-list > li > .tag {
+    float: right;
+    margin: 0 3px 0 0;
+  }
 }
 
 /*action buttons*/
@@ -207,31 +212,25 @@ h1 {
   display: flex;
   border: none;
 }
-.info__tags > li,
-.info__tags > div {
+.tag {
   padding: 5px 10px;
   margin-right: 3px;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
-.info__tags > li.n1,
-.info__tags > div.n1 {
+.tag.n1 {
   background-color: burlywood;
 }
-.info__tags > li.n2,
-.info__tags > div.n2 {
+.tag.n2 {
   background-color: cornflowerblue;
 }
-.info__tags > li.n3,
-.info__tags > div.n3 {
+.tag.n3 {
   background-color: darksalmon;
 }
-.info__tags > li.n4,
-.info__tags > div.n4 {
+.tag.n4 {
   background-color: darkseagreen;
 }
-.info__tags > li.n5,
-.info__tags > div.n5 {
+.tag.n5 {
   background-color: white;
 }
 

@@ -62,7 +62,7 @@ export default class extends AbstractView {
           noteInfo.tags.forEach((tag) => {
             var tagsListItem = document.createElement("li");
             tagsListItem.setAttribute("id", tag.tagId);
-            tagsListItem.setAttribute("class", "n" + tag.tagId);
+            tagsListItem.setAttribute("class", "tag n" + tag.tagId);
             tagsListItem.innerText = tag.name;
             tagsList.appendChild(tagsListItem);
           });

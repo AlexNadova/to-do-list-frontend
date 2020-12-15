@@ -31,10 +31,17 @@ export default class extends AbstractView {
         notes.data.forEach((note) => {
           var noteItem = document.createElement("li");
           noteItem.setAttribute("id", note.id);
+
           var noteLink = document.createElement("a");
           noteLink.setAttribute("href", "./notes/" + note.id);
           noteLink.innerText = note.title;
           noteItem.appendChild(noteLink);
+          Array.prototype.forEach.call(note.tags, (tag) => {
+            var span = document.createElement("span");
+            span.setAttribute("class", "tag n" + tag.tagId);
+            span.innerText = tag.name;
+            noteItem.appendChild(span);
+          });
           noteList.appendChild(noteItem);
         });
         noteListContainer.appendChild(noteList);

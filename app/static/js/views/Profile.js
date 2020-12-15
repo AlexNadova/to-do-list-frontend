@@ -43,10 +43,10 @@ export default class extends AbstractView {
         let div = document.createElement("div");
         div.innerHTML = `
           <h1>Profile</h1>
-          <button id="deleteBtn">Delete profile</button>
-          <a href="../update-user">Update user</a>
-          <div>
-            <ul>
+          <div id="deleteBtn" class="action__button"><a>Delete profile</a></div>
+          <div class="action__button"><a href="../update-user">Update user</a></div>
+          <div class="info__container">
+            <ul class="info">
               <li>ID: ${userInfo.id}</li>
               <li>Title: ${userInfo.name}</li>
               <li>Content: ${userInfo.email}</li>

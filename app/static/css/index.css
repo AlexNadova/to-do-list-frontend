@@ -1,0 +1,251 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: center darkcyan no-repeat;
+  background-size: cover;
+  background-image: url(./background_pattern.png);
+  position: relative;
+}
+
+/*navigation*/
+nav {
+  position: relative;
+  max-width: unset;
+  height: calc(100% - 30px);
+  background-color: darkcyan;
+  padding: 30px 10px 0;
+}
+.nav > span {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+}
+.nav > span:hover {
+  font-weight: bold;
+}
+.nav__container {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.7);
+}
+.nav__link {
+  cursor: pointer;
+  padding: 15px 10px;
+  border-bottom: 1px solid #eee;
+  display: block;
+  color: #eee;
+  text-decoration: none;
+}
+.nav__link:hover {
+  background-color: rgb(0, 0, 0, 0.55);
+}
+.nav__open {
+  position: fixed;
+  top: 25px;
+  left: 0;
+  width: 17px;
+  padding: 4px 7px;
+  background-color: rgb(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  border-left: none;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  cursor: pointer;
+}
+.nav__open:hover {
+  background-color: rgb(0, 0, 0, 0.6);
+}
+.nav__open > hr {
+  margin: 5px 0;
+  border: 1px solid #ccc;
+}
+@media screen and (min-width: 400px) {
+  nav {
+    max-width: 250px;
+  }
+}
+
+/*title*/
+h1 {
+  text-align: center;
+  padding: 80px 0 30px;
+  margin: 0;
+  color: white;
+}
+
+/*notes list*/
+.notes-list__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.notes-list {
+  border: 1px solid #ccc;
+  min-height: 100px;
+  border-radius: 3px;
+  padding: 10px;
+  list-style: none;
+  background-color: rgb(255, 255, 255, 0.6);
+  text-shadow: white;
+}
+.notes-list > li {
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notes-list > li:hover {
+  background-color: #eee;
+}
+.notes-list > li > a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  padding: 5px 15px;
+}
+.notes-list > li > span {
+  margin-left: 10px;
+  float: right;
+  cursor: pointer;
+}
+.notes-list > li > span:hover {
+  font-weight: bold;
+  color: darkcyan;
+}
+
+/*action buttons*/
+.action__button {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+.action__button.submit {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px 0;
+}
+.action__button > a,
+.action__button > span {
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  display: block;
+  line-height: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+.action__button > a:hover,
+.action__button > span:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/*info pages*/
+.info__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.info {
+  border: 1px solid #ccc;
+  min-height: 100px;
+  border-radius: 3px;
+  padding: 10px;
+  list-style: none;
+  background-color: rgb(255, 255, 255, 0.6);
+  text-shadow: white;
+  padding: 10px;
+  margin: 0;
+}
+.info > li {
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+.info > li:hover {
+  background-color: #eee;
+}
+.info > li > span {
+  margin-left: 10px;
+  float: right;
+  cursor: pointer;
+}
+.info > li > span:hover {
+  font-weight: bold;
+  color: darkcyan;
+}
+.info__tags {
+  list-style: none;
+  padding: 10px 0 0;
+  margin: 0 0 10px;
+  display: flex;
+  border: none;
+}
+.info__tags > li,
+.info__tags > div {
+  padding: 5px 10px;
+  margin-right: 3px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.info__tags > li.n1,
+.info__tags > div.n1 {
+  background-color: burlywood;
+}
+.info__tags > li.n2,
+.info__tags > div.n2 {
+  background-color: cornflowerblue;
+}
+.info__tags > li.n3,
+.info__tags > div.n3 {
+  background-color: darksalmon;
+}
+.info__tags > li.n4,
+.info__tags > div.n4 {
+  background-color: darkseagreen;
+}
+.info__tags > li.n5,
+.info__tags > div.n5 {
+  background-color: white;
+}
+
+/*forms*/
+.form {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 10px;
+}
+.form__input {
+  width: calc(100% - 10px);
+}
+.form__input > label {
+  display: block;
+  width: 100%;
+  color: white;
+  padding: 10px 0 5px;
+}
+.form__input > input,
+.form__input > textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 0 5px;
+}
+.form__input > input {
+  height: 30px;
+}
+.form__input > textarea {
+  height: 500px;
+}

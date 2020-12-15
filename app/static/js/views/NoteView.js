@@ -46,31 +46,33 @@ export default class extends AbstractView {
         let div = document.createElement("div");
         let htmlString = `
           <h1>Note</h1>
-          <p>You are viewing note #${noteInfo.id}.</p>
-          <button id="deleteBtn">Delete note</button>
-          <a href="../update-note/${noteId}">Update note</a>
+          <div id="deleteBtn" class="action__button"><a>Delete note</a></div>
+          <div class="action__button"><a href="../update-note/${noteId}">Update note</a></div>
         `;
         let noteInfoElement = document.createElement("div");
-        noteInfoElement.innerHTML = `
-        <ul>
-          <li>ID: ${noteInfo.id}</li>
-          <li>Title: ${noteInfo.title}</li>
-          <li>Content: ${noteInfo.content}</li>
-          <li>Created at: ${noteInfo.createdAt}</li>
-          <li>Updated at: ${noteInfo.updatedAt}</li>
-        </ul>
-        `;
+        noteInfoElement.setAttribute("class", "info__container");
         if (noteInfo.tags.length > 0) {
           let tagsList = document.createElement("ul");
-          tagsList.innerHTML = `<h3>Tags:</h3>`;
-          noteInfo.tags.forEach((note) => {
+          tagsList.setAttribute("class", "info__tags");
+          noteInfo.tags.forEach((tag) => {
             var tagsListItem = document.createElement("li");
-            tagsListItem.setAttribute("id", note.id);
-            tagsListItem.innerText = note.name;
+            tagsListItem.setAttribute("id", tag.tagId);
+            tagsListItem.setAttribute("class", "n" + tag.tagId);
+            tagsListItem.innerText = tag.name;
             tagsList.appendChild(tagsListItem);
           });
           noteInfoElement.appendChild(tagsList);
         }
+        let infoContainer = document.createElement("ul");
+        infoContainer.setAttribute("class", "info");
+        infoContainer.innerHTML = `
+          <li>ID: ${noteInfo.id}</li>
+          <li>Title: ${noteInfo.title}</li>
+          <li>Created at: ${noteInfo.createdAt}</li>
+          <li>Updated at: ${noteInfo.updatedAt}</li>
+          <li>Content: ${noteInfo.content}</li>
+        `;
+        noteInfoElement.appendChild(infoContainer);
         div.innerHTML = htmlString.trim();
         div.appendChild(noteInfoElement);
         if (html) html(div);

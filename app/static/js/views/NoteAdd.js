@@ -30,20 +30,18 @@ export default class extends AbstractView {
 
   async getHtml(url, token, html) {
     let div = document.createElement("div");
-    div.innerHTML = "<h1>Login</h1>";
+    div.innerHTML = "<h1>Add new note</h1>";
     let form = document.createElement("form");
     form.setAttribute("id", "addNoteForm");
+    form.setAttribute("class", "form");
     form.innerHTML = `
-      <div>
+      <div class="form__input">
         <label for="title">Title</label>
         <input name="title" id="title">
       </div>
-      <div>
+      <div class="form__input">
         <label for="content">Content</label>
         <textarea name="content" id="content"></textarea>
-      </div>
-      <div>
-        <button id="btn">Add note</button>
       </div>
     `;
     var xhttp = new XMLHttpRequest();
@@ -52,7 +50,11 @@ export default class extends AbstractView {
         let tags = JSON.parse(this.responseText);
         let tagFieldset = document.createElement("fieldset");
         tagFieldset.setAttribute("id", "tag");
+        tagFieldset.setAttribute("class", "info__tags");
         tags.forEach((tag) => {
+          let tagItem = document.createElement("div");
+          tagItem.setAttribute("class", "n" + tag.id);
+
           let tagInput = document.createElement("input");
           tagInput.setAttribute("type", "checkbox");
           tagInput.setAttribute("id", tag.id);
@@ -62,10 +64,17 @@ export default class extends AbstractView {
           let tagLabel = document.createElement("label");
           tagLabel.setAttribute("for", tag.name);
           tagLabel.innerText = tag.name;
-          tagFieldset.appendChild(tagLabel);
-          tagFieldset.appendChild(tagInput);
+
+          tagItem.appendChild(tagLabel);
+          tagItem.appendChild(tagInput);
+          tagFieldset.appendChild(tagItem);
         });
         form.appendChild(tagFieldset);
+        let button = document.createElement("button");
+        button.setAttribute("type", "submit");
+        button.setAttribute("class", "action__button submit");
+        button.innerHTML = "<span>Update note</span>";
+        form.appendChild(button);
       }
     };
     xhttp.open("GET", url + "/tags");

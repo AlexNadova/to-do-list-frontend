@@ -8,7 +8,7 @@ import NoteUpdate from "./views/NoteUpdate.js";
 import Profile from "./views/Profile.js";
 import ProfileUpdate from "./views/ProfileUpdate.js";
 import config from "./../config.js";
-
+import { ready } from "./general.js";
 
 const pathToRegex = (path) =>
   new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
@@ -66,6 +66,12 @@ const router = async () => {
   if ((match.route.restrict && token) || (!match.route.restrict && !token)) {
     // document.getElementById("err").innerHTML = "";
     const view = new match.route.view(getParams(match));
+
+    document.querySelector(".nav").innerHTML = view.getNav(
+      match.route.restrict
+    );
+    ready();
+
     await view.getHtml(config.baseUrl, token, (res) => {
       let app = document.querySelector("#app");
       app.replaceChild(res, app.firstChild);

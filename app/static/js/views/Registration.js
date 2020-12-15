@@ -33,29 +33,26 @@ export default class extends AbstractView {
   async getHtml(url, token, html) {
     let div = document.createElement("div");
     div.innerHTML = `
-    <h1>Login</h1>
-    <form id="registrationForm">
-      <div>
+    <h1>Register now</h1>
+    <form id="registrationForm" class="form">
+      <div class="form__input">
         <label for="email">Email</label>
         <input name="email" id="email">
       </div>
-      <div>
+      <div class="form__input">
         <label for="name">Name</label>
         <input name="name" id="name">
       </div>
-      <div>
+      <div class="form__input">
         <label for="password">Password</label>
         <input name="password" id="password">
       </div>
-      <div>
+      <div class="form__input">
         <label for="password_confirmation">Password</label>
         <input name="password_confirmation" id="password_confirmation">
       </div>
-      <div>
-        <button id="btn">Register</button>
-      </div>
+      <button class="action__button submit"><span>Sign in</span></button>
     </form>
-    <p id="demo"></p>
     `;
     html(div);
   }

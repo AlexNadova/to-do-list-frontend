@@ -7,15 +7,24 @@
     <link rel="stylesheet" href="/static/css/index.css" />
   </head>
   <body>
-    <nav class="nav">
-      <a href="/" class="nav__link" data-link>Dashboard</a>
-      <a href="/login" class="nav__link" data-link>Login</a>
-      <a href="/registration" class="nav__link" data-link>Registration</a>
-      <a href="/notes" class="nav__link" data-link>Notes</a>
-      <a href="/profile" class="nav__link" data-link>Profile</a>
-    </nav>
+    <div class="nav__open">
+      <hr />
+      <hr />
+      <hr />
+    </div>
+    <div class="nav__container">
+      <nav class="nav">
+        <a href="/login" class="nav__link" data-link>Login</a>
+        <a href="/registration" class="nav__link" data-link>Registration</a>
+        <a href="/notes" class="nav__link" data-link>Notes</a>
+        <a href="/profile" class="nav__link" data-link>Profile</a>
+        <a id="logout" class="nav__link">Logout</a>
+        <span>X</span>
+      </nav>
+    </div>
     <div id="app"><div></div></div>
     <div id="err"></div>
     <script type="module" src="/static/js/index.js"></script>
+    <script type="module" src="/static/js/general.js"></script>
   </body>
 </html>

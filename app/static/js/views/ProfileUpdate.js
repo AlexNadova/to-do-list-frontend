@@ -37,26 +37,24 @@ export default class extends AbstractView {
     let div = document.createElement("div");
     div.innerHTML = `
     <h1>Update user</h1>
-    <form id="updateUserForm">
-      <div>
+    <form id="updateUserForm" class="form">
+      <div class="form__input">
         <label for="email">Email</label>
         <input name="email" id="email">
       </div>
-      <div>
+      <div class="form__input">
         <label for="name">Name</label>
         <input name="name" id="name">
       </div>
-      <div>
+      <div class="form__input">
         <label for="password">Password</label>
         <input name="password" id="password">
       </div>
-      <div>
+      <div class="form__input">
         <label for="password_confirmation">Password</label>
         <input name="password_confirmation" id="password_confirmation">
       </div>
-      <div>
-        <button id="btn">Update user</button>
-      </div>
+      <button type="submit" class="action__button submit"><span>Update user</span></button>
     </form>
     `
     html(div);

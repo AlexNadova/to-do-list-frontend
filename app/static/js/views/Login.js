@@ -7,6 +7,7 @@ export default class extends AbstractView {
   }
 
   async getJs(url, token) {
+    /** POST request to log user in */
     const form = document.querySelector("#loginForm");
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -15,6 +16,7 @@ export default class extends AbstractView {
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           let response = JSON.parse(this.response);
+          /** save id and JWT to loval storage */
           localStorage.setItem("token", response.accessToken);
           localStorage.setItem("id", response.id);
           window.location.href = "/notes";
@@ -39,6 +41,7 @@ export default class extends AbstractView {
   }
 
   async getHtml(url, token, html) {
+    /** create login form */
     let div = document.createElement("div");
     div.innerHTML = `
     <h1>Login</h1>

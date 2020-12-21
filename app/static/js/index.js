@@ -78,11 +78,11 @@ const router = async () => {
       view.getJs(config.baseUrl, token);
     });
   } else if (!match.route.restrict && token) {
-    window.location.href = "/notes";
+    navigateTo("/notes");
   } else if (match.route.restrict && !token) {
     document.querySelector("#err").innerHTML =
       "You need to be logged in to acces this site.";
-    window.location.href = "/login";
+    navigateTo("/login");
   }
 };
 
